@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 class Siswa {
     String nama;
-    int nilai;
+    int nilai, peringkat;
     
     Siswa(String nama, int nilai) {
         this.nama=nama;
@@ -46,9 +46,14 @@ public class Isas2 {
     //mengisi array hasil dengan data siswa yang sudah diurutkan
     for (int i = siswa.length - 1; i >= 0; i--) {
         Siswa s = siswa[i];
-        urutSiswa[count[s.nilai] - 1] = s;
+        urutSiswa[siswa.length - count[s.nilai]] = s;   //mengurutkan nilai siswa secara menurun
         count[s.nilai]--;
     }
+    
+     // Menambahkan peringkat ke setiap siswa
+        for (int i = 0; i < urutSiswa.length; i++) {
+            urutSiswa[i].peringkat = i + 1;
+        }
     
     //copy array yg sudah diurutkan kedalam array asli
     System.arraycopy(urutSiswa, 0, siswa, 0, siswa.length);
@@ -58,12 +63,13 @@ public class Isas2 {
     public static void main(String[] args) {
         Siswa[] siswa = {
         new Siswa("Ayu",85),
+        new Siswa("Agung", 55),
         new Siswa("Budi",80),
+        new Siswa("Bella",70), 
         new Siswa("Husen",75),
-        new Siswa("Soni",90),
-        new Siswa("Tono",40),
+        new Siswa("Soni",90),    
         new Siswa("Sinta",65),
-        new Siswa("Bella",70),        
+        new Siswa("Tono",40),
         };
         
         System.out.println("Siswa Sebelum Diurutkan");
@@ -76,7 +82,38 @@ public class Isas2 {
         System.out.println("");
         System.out.println("Siswa Setelah Diurutkan");
         for (Siswa s : siswa) {
-            System.out.println(s.nama + " - " + s.nilai);
+            System.out.println(s.nama + " - " + s.nilai + " Ranking " + s.peringkat);
         }
     }    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
